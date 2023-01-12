@@ -1,35 +1,39 @@
 import math
-import os
-
 import pygame as pg
-import pymunk as pm
-from pymunk.pygame_util import *
-
+from settings import *
 
 class Player():
-    def __init__(self, game, pos, size):
+    def __init__(self, game,pos, size):
         # pg.sprite.Sprite.__init__(self)
         self.game = game
-        self.body = pm.Body(body_type=pm.Body.DYNAMIC)
-        self.body.position = pos
         self.size = size
-        self.shape = pm.Poly.create_box(self.body, self.size)
-        self.shape.mass = 10
-        self.shape.elasticity = 0.1
-        self.shape.friction = 0.1
-        self.shape.color = (150, 255, 25, 0)
-        self.game.space.add(self.body, self.shape)
-        self.image =pg.Surface((size))
-        self.shape.collision_type = 1
+        self.image =pg.image.load("img/ghost.png").convert()
         self.rect = self.image.get_rect()
         self.rect.topleft = (pos)
 
 
     def update(self):
+        keys = pg.key.get_pressed()
+        if keys[pg.K_w]:
+                self.rect.move_ip(0, -SPEED)
+        if keys[pg.K_s]:
+                self.rect.move_ip(0, SPEED)
+        if keys[pg.K_a]:
+                self.rect.move_ip(-SPEED, 0)
+        if keys[pg.K_d]:
+                self.rect.move_ip(SPEED, 0)
 
-        self.image = pg.transform.scale(self.image, self.size)
-        self.image = pg.transform.rotate(self.image, -math.degrees(self.body.angle))
-        self.rect.center = self.body.position
+        if self.rect.left <= 0:
+            self.rect.left = 0
+        if self.rect.right >= SCREEN_WIDTH:
+            self.rect.right = SCREEN_WIDTH
+        if self.rect.bottom >= SCREEN_HEIGHT:
+            self.rect.bottom = SCREEN_HEIGHT
+        if self.rect.top <= 0:
+            self.rect.top = 0
+
+
+
         self.game.screen.blit(self.image, (self.rect.centerx - self.image.get_width() / 2, self.rect.centery - self.image.get_height() / 2))
 
 
