@@ -8,9 +8,11 @@ class Enemy(pg.sprite.Sprite):
         super(Enemy, self).__init__()
         self.game = game
         self.size = (40, 15)
-        self.image =pg.image.load("img/bolt.png").convert()
+        self.number = randint(0,2)
+        self.images = ["img/bolt.png", "img/yellow_bolt.png", "img/green_bolt.png"]
+        self.image =pg.image.load(self.images[self.number]).convert_alpha()
         self.rect = self.image.get_rect(
-            center=(randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 50), randint(0, SCREEN_HEIGHT)))
+            center=(randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 50), randint(0, SCREEN_HEIGHT - GROUND - 5)))
         self.speed = randint(3, 20)
 
     def update(self):

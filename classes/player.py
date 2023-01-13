@@ -1,15 +1,15 @@
-import math
 import pygame as pg
 from settings import *
 
-class Player():
-    def __init__(self, game,pos, size):
+class Ghost():
+    def __init__(self, game, pos, size):
         # pg.sprite.Sprite.__init__(self)
         self.game = game
+        self.pos = pos
         self.size = size
-        self.image =pg.image.load("img/ghost.png").convert()
+        self.image =pg.image.load("img/ghost.png").convert_alpha()
         self.rect = self.image.get_rect()
-        self.rect.topleft = (pos)
+        self.rect.topleft = (self.pos)
 
 
     def update(self):
@@ -31,6 +31,7 @@ class Player():
             self.rect.bottom = SCREEN_HEIGHT
         if self.rect.top <= 0:
             self.rect.top = 0
+
 
 
 
