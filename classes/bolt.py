@@ -8,7 +8,7 @@ class Bolt(Enemy):
     def __init__(self, game):
         super(Bolt, self).__init__(game)
         self.size = (40, 15)
-        self.number = randint(0,2)
+        self.number = randint(0, 2)
         self.images = ["img/bolt.png", "img/yellow_bolt.png", "img/green_bolt.png"]
         self.image =pg.image.load(self.images[self.number]).convert_alpha()
         self.rect = self.image.get_rect(

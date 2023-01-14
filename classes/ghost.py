@@ -1,8 +1,10 @@
 import pygame as pg
 from settings import *
 
-class Ghost():
+class Ghost(pg.sprite.Sprite):
     def __init__(self, game, pos, size=(40, 60)):
+        super(Ghost, self).__init__()
+
         self.game = game
         self.pos = pos
         self.size = size
