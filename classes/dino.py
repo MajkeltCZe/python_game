@@ -2,7 +2,7 @@ import pygame as pg
 from settings import *
 
 class Dinosaur ():
-    def __init__(self, game, pos, size):
+    def __init__(self, game, pos, size=(160, 100)):
         # pg.sprite.Sprite.__init__(self)
         self.game = game
         self.pos = pos
