@@ -8,7 +8,7 @@ class Enemy(pg.sprite.Sprite):
         super(Enemy, self).__init__()
         self.game = game
         self.size = (20, 40)
-        self.image =pg.image.load("img/alien.png").convert_alpha()
+        self.image = pg.image.load("img/alien.png").convert_alpha()
         self.rect = self.image.get_rect(
             center=(SCREEN_WIDTH, SCREEN_HEIGHT - GROUND - 20))
         self.speed = randint(3, 10)

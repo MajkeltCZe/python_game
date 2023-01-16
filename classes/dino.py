@@ -38,9 +38,8 @@ class Dinosaur(pg.sprite.Sprite):
             if self.rect.bottom == SCREEN_HEIGHT - GROUND:
                 self.image = pg.image.load(self.left[int(self.index)]).convert_alpha()
 
-        if  not keys[pg.K_d] and not keys[pg.K_w] and not keys[pg.K_a]:
+        if not keys[pg.K_d] and not keys[pg.K_w] and not keys[pg.K_a]:
             self.image = pg.image.load("img/dino.png").convert_alpha()
-
 
         self.gravity += 1
         self.rect.move_ip(0, self.gravity)
@@ -51,7 +50,6 @@ class Dinosaur(pg.sprite.Sprite):
             self.rect.right = SCREEN_WIDTH
         if self.rect.bottom >= SCREEN_HEIGHT - GROUND:
             self.rect.bottom = SCREEN_HEIGHT - GROUND
-
 
         self.game.screen.blit(self.image, (
             self.rect.centerx - self.image.get_width() / 2, self.rect.centery - self.image.get_height() / 2))

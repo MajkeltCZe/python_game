@@ -1,5 +1,4 @@
 import pygame as pg
-from settings import *
 
 
 class Text:
@@ -9,7 +8,6 @@ class Text:
         self.text1 = text1
         self.text2 = text2
         self.color = color
-
 
     def update(self):
         font = pg.font.Font('freesansbold.ttf', 30)
