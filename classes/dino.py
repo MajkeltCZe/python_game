@@ -8,9 +8,10 @@ class Dinosaur(pg.sprite.Sprite):
         self.game = game
         self.pos = pos
         self.size = size
-        self.image = pg.image.load("img/dino.png").convert_alpha()
+        self.images = ["img/dino.png", "img/dino_jump.png"]
         self.right = ["img/dino_right1.png", "img/dino_right2.png"]
         self.left = ["img/dino_left1.png", "img/dino_left2.png"]
+        self.image = pg.image.load(self.images[0]).convert_alpha()
         self.index = 0
         self.rect = self.image.get_rect()
         self.rect.topleft = (self.pos)
@@ -19,7 +20,7 @@ class Dinosaur(pg.sprite.Sprite):
     def update(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_w] and self.rect.bottom == SCREEN_HEIGHT - GROUND:
-            self.image = pg.image.load("img/dino_jump.png").convert_alpha()
+            self.image = pg.image.load(self.images[1]).convert_alpha()
             self.gravity = -20
 
         if keys[pg.K_d]:
@@ -39,7 +40,7 @@ class Dinosaur(pg.sprite.Sprite):
                 self.image = pg.image.load(self.left[int(self.index)]).convert_alpha()
 
         if not keys[pg.K_d] and not keys[pg.K_w] and not keys[pg.K_a]:
-            self.image = pg.image.load("img/dino.png").convert_alpha()
+            self.image = pg.image.load(self.images[0]).convert_alpha()
 
         self.gravity += 1
         self.rect.move_ip(0, self.gravity)

@@ -26,9 +26,9 @@ class Game:
         self.generate_bolt = pg.USEREVENT + 1
         self.generate_enemy = pg.USEREVENT + 3
         self.change = pg.USEREVENT + 2
-        pg.time.set_timer(self.generate_bolt, 500)
-        pg.time.set_timer(self.generate_enemy, randint(1000, 5000))
-        pg.time.set_timer(self.change, randint(3000, 15000))
+       # pg.time.set_timer(self.generate_bolt, 500)
+       # pg.time.set_timer(self.generate_enemy, randint(1000, 5000))
+      #  pg.time.set_timer(self.change, randint(3000, 15000))
         self.lives = 3
         self.playerType = 0
         self.end = False
@@ -41,17 +41,17 @@ class Game:
             self.lives -= 1
             print("hit by bolt")
         if self.lives == 0:
-            self.end = True
+            pass
 
     def new(self):
-        self.music = pg.mixer.music.load("music/music.ogg")
+       # self.music = pg.mixer.music.load("music/music.ogg")
         self.score = Text(self, (5, 5), 'score:', 0, BLACK)
         self.livesDisplay = Text(self, (5, 50), 'lives:', self.lives, BLACK)
         self.background = Background(self)
         self.player = Ghost(self, (50, 530))
         self.playerSprite.add(self.player)
-        pg.mixer.music.play(loops=-1)
-        pg.mixer.music.set_volume(0.5)
+      #  pg.mixer.music.play(loops=-1)
+       # pg.mixer.music.set_volume(0.5)
 
     def events(self):
         self.events_list = pg.event.get()
