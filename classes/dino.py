@@ -14,8 +14,9 @@ class Dinosaur(pg.sprite.Sprite):
         self.image = pg.image.load(self.images[0]).convert_alpha()
         self.index = 0
         self.rect = self.image.get_rect()
-        self.rect.topleft = (self.pos)
+        self.rect.topleft = self.pos
         self.gravity = 0
+        self.speed = SPEED - 2
 
     def update(self):
         keys = pg.key.get_pressed()
@@ -24,7 +25,7 @@ class Dinosaur(pg.sprite.Sprite):
             self.gravity = -20
 
         if keys[pg.K_d]:
-            self.rect.move_ip(SPEED, 0)
+            self.rect.move_ip(self.speed, 0)
             self.index += 0.1
             if self.index >= len(self.right):
                 self.index = 0
@@ -32,7 +33,7 @@ class Dinosaur(pg.sprite.Sprite):
                 self.image = pg.image.load(self.right[int(self.index)]).convert_alpha()
 
         if keys[pg.K_a]:
-            self.rect.move_ip(-SPEED, 0)
+            self.rect.move_ip(-self.speed, 0)
             self.index += 0.1
             if self.index >= len(self.left):
                 self.index = 0

@@ -10,6 +10,5 @@ class Text:
         self.color = color
 
     def update(self):
-        font = pg.font.Font('freesansbold.ttf', 30)
-
+        font = pg.font.SysFont('Ariel', 50)
         self.game.screen.blit(font.render(f'{self.text1} {self.text2}', True, self.color), self.pos)

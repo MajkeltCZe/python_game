@@ -11,7 +11,7 @@ class Ghost(pg.sprite.Sprite):
         self.size = size
         self.image = pg.image.load("img/ghost.png").convert_alpha()
         self.rect = self.image.get_rect()
-        self.rect.topleft = (self.pos)
+        self.rect.topleft = self.pos
 
     def update(self):
         keys = pg.key.get_pressed()
