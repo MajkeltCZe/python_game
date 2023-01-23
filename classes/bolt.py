@@ -3,11 +3,16 @@ from settings import *
 from random import randint
 from classes.enemy import Enemy
 
+'''
+Třída Bolt dědí ze třídy Enemy, samotná třídá vytváří střely
+'''
+
 
 class Bolt(Enemy):
+
     def __init__(self, game):
         super(Bolt, self).__init__(game)
-        self.size = (40, 15)
+        self.size = (randint(20, 80), randint(10, 25))
         self.number = randint(0, 2)
         self.images = ["img/bolt.png", "img/yellow_bolt.png", "img/green_bolt.png"]
         self.image = pg.image.load(self.images[self.number]).convert_alpha()

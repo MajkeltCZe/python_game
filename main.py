@@ -38,6 +38,7 @@ class Game:
         pg.time.set_timer(self.change, randint(3000, 15000))
 
     def collide(self):
+        # kolize a ubírání životů
         if pg.sprite.groupcollide(self.playerSprite, self.enemies, False, True):
             self.lives -= 1
         if pg.sprite.groupcollide(self.playerSprite, self.bolts, False, True) and self.playerType == 0:
@@ -46,6 +47,7 @@ class Game:
             self.end = True
 
     def new(self):
+        # vytvoření herních prvů (hráč, skóre, životy)
         self.score = Text(self, (5, 5), 'score:', 0, BLACK)
         self.livesDisplay = Text(self, (5, 50), 'lives:', self.lives, BLACK)
         self.background = Background(self)
@@ -58,6 +60,8 @@ class Game:
             if event.type == pg.QUIT:
                 self.running = False
             if not self.end:
+
+                # měnění postavy
                 if event.type == self.change:
                     self.cords = self.player.rect.topleft
                     if self.playerType == 1:
@@ -95,6 +99,7 @@ class Game:
             self.allSprites.empty()
             self.score = Text(self, (SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT / 2), 'score:', self.time, WHITE)
             pg.mixer.quit()
+
         self.livesDisplay.update()
         self.score.update()
         pg.display.update()
@@ -104,8 +109,9 @@ class Game:
         while self.running:
             self.events()
             self.update()
+
+        # ukončení hry
         pg.quit()
-        pg.mixer.quit()
         exit()
 
 

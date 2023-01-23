@@ -1,6 +1,10 @@
 import pygame as pg
 from settings import *
 
+'''
+Třída vytváří hráčovu postavu, kterou je dinosaurus, který dokáže skákat
+'''
+
 
 class Dinosaur(pg.sprite.Sprite):
     def __init__(self, game, pos, size=(160, 100)):
@@ -19,6 +23,8 @@ class Dinosaur(pg.sprite.Sprite):
         self.speed = SPEED - 2
 
     def update(self):
+
+        # reakce na zmáčknutí klávesy
         keys = pg.key.get_pressed()
         if keys[pg.K_w] and self.rect.bottom == SCREEN_HEIGHT - GROUND:
             self.image = pg.image.load(self.images[1]).convert_alpha()
@@ -46,6 +52,7 @@ class Dinosaur(pg.sprite.Sprite):
         self.gravity += 1
         self.rect.move_ip(0, self.gravity)
 
+        # zamezení pohybu mimo herní plochu
         if self.rect.left <= 0:
             self.rect.left = 0
         if self.rect.right >= SCREEN_WIDTH:
@@ -53,5 +60,6 @@ class Dinosaur(pg.sprite.Sprite):
         if self.rect.bottom >= SCREEN_HEIGHT - GROUND:
             self.rect.bottom = SCREEN_HEIGHT - GROUND
 
+        # vykreslení
         self.game.screen.blit(self.image, (
             self.rect.centerx - self.image.get_width() / 2, self.rect.centery - self.image.get_height() / 2))

@@ -2,6 +2,10 @@ import pygame as pg
 from settings import *
 from random import randint
 
+'''
+Třída vytváří nepřátelé, kteří se pohybujou po zemi
+'''
+
 
 class Enemy(pg.sprite.Sprite):
     def __init__(self, game):
@@ -14,7 +18,10 @@ class Enemy(pg.sprite.Sprite):
         self.speed = randint(3, 10)
 
     def update(self):
+        # pohyb
         self.rect.move_ip(-self.speed, 0)
+
+        # odstranění nepřítele, když zmizí z hrací plochy
         if self.rect.right < 0:
             self.kill()
 

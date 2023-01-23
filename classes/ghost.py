@@ -1,11 +1,14 @@
 import pygame as pg
 from settings import *
 
+'''
+Třídá vytváří hráčovu postavu, tentokrát se jedná o ducha, který se dokáže pohyb po celé hrací ploše
+'''
+
 
 class Ghost(pg.sprite.Sprite):
     def __init__(self, game, pos, size=(40, 60)):
         super(Ghost, self).__init__()
-
         self.game = game
         self.pos = pos
         self.size = size
@@ -14,6 +17,8 @@ class Ghost(pg.sprite.Sprite):
         self.rect.topleft = self.pos
 
     def update(self):
+
+        # reakce na zmáčknutí kláves
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:
             self.rect.move_ip(0, -SPEED)
@@ -33,5 +38,6 @@ class Ghost(pg.sprite.Sprite):
         if self.rect.top <= 0:
             self.rect.top = 0
 
+        # vykreslení
         self.game.screen.blit(self.image, (
             self.rect.centerx - self.image.get_width() / 2, self.rect.centery - self.image.get_height() / 2))

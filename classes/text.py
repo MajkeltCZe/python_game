@@ -1,5 +1,9 @@
 import pygame as pg
 
+'''
+Třída vypíše text na herní plochu
+'''
+
 
 class Text:
     def __init__(self, game, pos, text1, text2, color):
